@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import controllers.DepartmentController;
 import icontrollers.IDepartmentController;
 import java.util.List;
@@ -41,7 +35,8 @@ public class JUnitTestDepartment {
         List<Department> act2 = irc.search("1");
         Assert.assertNotNull(act2);
     }
-
+    
+    @Test
     public void testInsert() {
         irc.insert("111", "NamaSaya","110","1700");
         List<Department> m = irc.getById("111");
@@ -49,12 +44,15 @@ public class JUnitTestDepartment {
         Assert.assertEquals("NamaSaya", m.get(0).getId());
     }
     
+    @Test
     public void testUpdate() {
         irc.insert("111", "NamaSayaItu","110","1700");
         List<Department> m = irc.getById("111");
         Assert.assertEquals("111", m.get(0).getId());
         Assert.assertEquals("NamaSayaIni", m.get(0).getName());
     }
+    
+    @Test
     public void testDelete() {
         irc.delete("7");
         List<Department> m = irc.getById("111");
