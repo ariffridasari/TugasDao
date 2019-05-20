@@ -34,9 +34,6 @@ public class CountryDAO implements ICountryDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Country c = new Country(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3));
-                c.setC_id(resultSet.getString(1));
-                c.setName(resultSet.getString(2));
-                c.setR_id(resultSet.getInt(3));
                 listCountry.add(c);
             }
         } catch (Exception e) {
@@ -66,7 +63,7 @@ public class CountryDAO implements ICountryDAO {
     @Override
     public List<Country> search(String key) {
         List<Country> listCountry = new ArrayList<Country>();
-        String query = "SELECT * FROM COUNTRIES WHERE LOWER(country_name) like (?) OR LOWER(country_id) like (?)";
+        String query = "SELECT * FROM COUNTRIES WHERE REGEXP_LIKE (country_name) like (?) OR REGEXP_LIKE(country_id) like (?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%" + key + "%");

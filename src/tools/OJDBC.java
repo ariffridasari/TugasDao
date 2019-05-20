@@ -113,12 +113,12 @@ public class OJDBC {
         /**
          * SEARCH COUNTRY
          */
-//        ICountryDAO icdao = new CountryDAO(connection.getConnection());
-//        for (Country country : icdao.search("AR")) {
-//            System.out.println(country.getC_id());
-//            System.out.println(country.getName());
-//            System.out.println(country.getR_id());
-//        }
+        ICountryDAO icdao = new CountryDAO(connection.getConnection());
+        for (Country country : icdao.search("ar")) {
+            System.out.println(country.getC_id());
+            System.out.println(country.getName());
+            System.out.println(country.getR_id());
+        }
         /**
          * INSERT COUNTRY
          */
