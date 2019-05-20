@@ -68,20 +68,28 @@ public class JobHistoryView extends javax.swing.JFrame {
             model.addRow(row);
         }      
     }
-//    public void getData(String key){
-//        DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
-//        Object[] row = new Object[5];
-//        List<JobHistory> jobHistory = new ArrayList<>();
-//        jobHistory = ijc.search(key);
-//        for (int i = 0; i < jobHistory.size(); i++) {
-//            row[0] = jobHistory.get(i).getEmployee_id();
-//            row[1] = jobHistory.get(i).getStart_date();
-//            row[2] = jobHistory.get(i).getEnd_date();
-//            row[3] = jobHistory.get(i).getJob_id();
-//            row[4] = jobHistory.get(i).getDepartment_id();
-//            model.addRow(row);
-//        } 
-//}
+    public void getData(String key){
+        DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
+        Object[] row = new Object[5];
+        List<JobHistory> jobHistory = new ArrayList<>();
+        jobHistory = ijc.search(key);
+        for (int i = 0; i < jobHistory.size(); i++) {
+            row[0] = jobHistory.get(i).getEmployee_id();
+            row[1] = jobHistory.get(i).getStart_date();
+            row[2] = jobHistory.get(i).getEnd_date();
+            row[3] = jobHistory.get(i).getJob_id();
+            row[4] = jobHistory.get(i).getDepartment_id();
+            model.addRow(row);
+        } 
+}
+        public void UpdateTabel(String key){
+            DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
+    model.setRowCount(0);
+        if (key == "") {
+            getData();
+        }
+        getData(key);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,6 +180,11 @@ public class JobHistoryView extends javax.swing.JFrame {
         jCariF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCariFActionPerformed(evt);
+            }
+        });
+        jCariF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jCariFKeyTyped(evt);
             }
         });
 
@@ -362,6 +375,10 @@ public class JobHistoryView extends javax.swing.JFrame {
         // TODO add your handling code here:
         jStart.setDateFormatString("dd-m-yyyy");
     }//GEN-LAST:event_jStartPropertyChange
+
+    private void jCariFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCariFKeyTyped
+        UpdateTabel(jCariF.getText());
+    }//GEN-LAST:event_jCariFKeyTyped
 
     /**
      * @param args the command line arguments
