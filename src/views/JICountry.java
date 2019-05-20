@@ -112,6 +112,9 @@ public class JICountry extends javax.swing.JInternalFrame {
             }
         });
         txtCountrySearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCountrySearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCountrySearchKeyTyped(evt);
             }
@@ -378,8 +381,12 @@ public class JICountry extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCountrySearchActionPerformed
 
     private void txtCountrySearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountrySearchKeyTyped
-        updateTableCountry(txtCountrySearch.getText());
+       
     }//GEN-LAST:event_txtCountrySearchKeyTyped
+
+    private void txtCountrySearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountrySearchKeyReleased
+         updateTableCountry(txtCountrySearch.getText());
+    }//GEN-LAST:event_txtCountrySearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
