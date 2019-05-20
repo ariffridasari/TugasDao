@@ -69,7 +69,7 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         model.setRowCount(0);
         showTableRegion();
     }
-    
+
     public void updateTableRegion(String s) {
         DefaultTableModel model = (DefaultTableModel) tableRegion.getModel();
         model.setRowCount(0);
@@ -171,6 +171,9 @@ public class JIRegionView extends javax.swing.JInternalFrame {
             }
         });
         txtRegionSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRegionSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtRegionSearchKeyTyped(evt);
             }
@@ -232,8 +235,7 @@ public class JIRegionView extends javax.swing.JInternalFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel4)
                         .addGap(26, 26, 26)
-                        .addComponent(txtRegionSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtRegionSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
@@ -349,10 +351,10 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     private void tableRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRegionMouseClicked
         DefaultTableModel model = (DefaultTableModel) tableRegion.getModel();
         int SelectRowIndex = tableRegion.getSelectedRow();
-        
+
         txtRegion_Id.setEditable(false);
-        txtRegion_Id.setText(model.getValueAt(SelectRowIndex,0).toString());
-        txtRegion_Name.setText(model.getValueAt(SelectRowIndex,1).toString());
+        txtRegion_Id.setText(model.getValueAt(SelectRowIndex, 0).toString());
+        txtRegion_Name.setText(model.getValueAt(SelectRowIndex, 1).toString());
     }//GEN-LAST:event_tableRegionMouseClicked
 
     private void txtRegionSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionSearchActionPerformed
@@ -360,8 +362,13 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtRegionSearchActionPerformed
 
     private void txtRegionSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegionSearchKeyTyped
-        updateTableRegion(txtRegionSearch.getText());
+
     }//GEN-LAST:event_txtRegionSearchKeyTyped
+
+    private void txtRegionSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegionSearchKeyReleased
+        updateTableRegion(txtRegionSearch.getText());
+        System.out.println(txtRegionSearch.getText());
+    }//GEN-LAST:event_txtRegionSearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

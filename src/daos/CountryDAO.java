@@ -63,7 +63,7 @@ public class CountryDAO implements ICountryDAO {
     @Override
     public List<Country> search(String key) {
         List<Country> listCountry = new ArrayList<Country>();
-        String query = "SELECT * FROM COUNTRIES WHERE country_name like (?) OR country_id like (?)";
+        String query = "SELECT * FROM COUNTRIES WHERE REGEXP_LIKE(country_name,?,'i') OR REGEXP_LIKE(country_id,?,'i') ";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%" + key + "%");

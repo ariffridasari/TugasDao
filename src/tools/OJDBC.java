@@ -109,11 +109,20 @@ public class OJDBC {
         /**
          * SEARCH REGIONS
          */
-        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-        for (Region region : irdao.search("su")) {
+        RegionDAO irdao = new RegionDAO(connection.getConnection());
+        for (Region region : irdao.getData(1, true)) {
             System.out.println(region.getId());
             System.out.println(region.getName());
         }
+        
+        /**
+         * getData("", false) -->  GET ALL
+         * getData(key, false) -->  SEARCH
+         * getData(key, true) -->  GET BY ID
+         * 
+         */
+        
+        
         /**
          * TABEL COUNTRIES
          */

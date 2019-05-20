@@ -70,7 +70,7 @@ public class DepartmentDAO implements IDepartmentDAO {
     @Override
     public List<Department> search(String key) {
         List<Department> listDepartment = new ArrayList<Department>();
-        String query = "SELECT * FROM Departments WHERE LOWER(department_id) LIKE (?) OR LOWER(department_name) LIKE (?) ORDER BY department_id";
+        String query = "SELECT * FROM Departments WHERE REGEXP_LIKE (department_id, '?', 'i') OR REGEXP_LIKE (department_name, '?', 'i') ORDER BY department_id";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%" + key + "%");
