@@ -43,20 +43,20 @@ public class JUnitTestDepartment {
     }
 
     public void testInsert() {
-        irc.insert("111", "NamaSaya");
+        irc.insert("111", "NamaSaya","110","1700");
         List<Department> m = irc.getById("111");
         Assert.assertEquals("111", m.get(0).getId());
         Assert.assertEquals("NamaSaya", m.get(0).getId());
     }
     
     public void testUpdate() {
-        irc.insert("111", "NamaSayaIni");
+        irc.insert("111", "NamaSayaItu","110","1700");
         List<Department> m = irc.getById("111");
         Assert.assertEquals("111", m.get(0).getId());
         Assert.assertEquals("NamaSayaIni", m.get(0).getName());
     }
     public void testDelete() {
-        irc.delete("111");
+        irc.delete("7");
         List<Department> m = irc.getById("111");
         assertNull(irc.getById("111"));
     }
