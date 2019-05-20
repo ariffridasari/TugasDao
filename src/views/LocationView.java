@@ -206,7 +206,7 @@ public class LocationView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Location id", "Street Address", "Postal Code", "City", "State Province", "Country id"
+                "Location id", "Street Address", "Postal Code", "City", "State Province", "Country id"
             }
         ));
         tablelocation.addMouseListener(new java.awt.event.MouseAdapter() {
