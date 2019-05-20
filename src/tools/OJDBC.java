@@ -43,7 +43,7 @@ public class OJDBC {
 //        }
         
         //test insert
-        IDepartmentDAO iddao = new DepartmentDAO(connection.getConnection());
+//        IDepartmentDAO iddao = new DepartmentDAO(connection.getConnection());
 //        Department d = new Department(7,"Apalah",103,1700);
 //        System.out.println(iddao.insert(d));
         
@@ -109,11 +109,11 @@ public class OJDBC {
         /**
          * SEARCH REGIONS
          */
-        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-        for (Region region : irdao.search("su")) {
-            System.out.println(region.getId());
-            System.out.println(region.getName());
-        }
+//        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+//        for (Region region : irdao.search("su")) {
+//            System.out.println(region.getId());
+//            System.out.println(region.getName());
+//        }
         /**
          * TABEL COUNTRIES
          */
@@ -169,7 +169,87 @@ public class OJDBC {
          */
 //        ICountryDAO icdao = new  CountryDAO(connection.getConnection());
 //        System.out.println(icdao.delete("BA"));
+     
+//// Test model Job History
+//        JobHistory jobhistory = new JobHistory();
+//        jobhistory.setEmployee_id(102);
+//        jobhistory.setJob_id("66");
+//        System.out.println(jobhistory.getEmployee_id() + " " + jobhistory.getJob_id());
+//        try {
+//            Date start = new SimpleDateFormat("MM-dd-yyyy").parse("10-22-2017");
+//            Date  end = new SimpleDateFormat("MM-dd-yyyy").parse("09-10-2002");
+//            JobHistory r = new JobHistory(102, start, end, "IT_PROGS", 27);
+//            System.out.println(r.getEmployee_id() + " " + r.getStart_date()+" "+ r.getEnd_date()+" "+r.getJob_id()+" "+r.getDepartment_id());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+//Test DAO update Job History
+//        IJobHistoryDAO ijob = new JobHistoryDAO(connection.getConnection());
+//        try {
+////            Date start = new SimpleDateFormat("MM-dd-yyyy").parse("10-22-2001");
+////            Date  end = new SimpleDateFormat("MM-dd-yyyy").parse("09-10-2000");
+//            JobHistory r = new JobHistory(107, "11-03-2001","09-09-2002", "IT_PROG", 110);
+//
+//        System.out.println(ijob.update(r));
+//            
+//        } catch (Exception e) {
+//        }
+
+////Test DAO getALL Job History
+//        IJobHistoryDAO irdao = new JobHistoryDAO(connection.getConnection());
+//        for (JobHistory jobhistory : irdao.getAll()) {
+//            System.out.println(jobhistory.getEmployee_id());
+//            System.out.println(jobhistory.getStart_date());
+//            System.out.println(jobhistory.getEnd_date());
+//            System.out.println(jobhistory.getJob_id());
+//            System.out.println(jobhistory.getDepartment_id());
+//        }
+//Test DAO Insert Job History
+//        IJobHistoryDAO ijob = new JobHistoryDAO(connection.getConnection());
+//        
+//        try {
+//        JobHistory r = new JobHistory(133, "10-10-1997", "11-12-1998", "IT_PROG", 110);
+//        System.out.println(ijob.insert(r));
+//           
+//        } catch (Exception e) {
+//        }
+
+//Test DAO Search Job History
+//        IJobHistoryDAO ijob = new JobHistoryDAO(connection.getConnection());
+//        for (JobHistory jobhistory : ijob.search("50")) {
+//            System.out.println(jobhistory.getEmployee_id());
+//            System.out.println(jobhistory.getStart_date());
+//            System.out.println(jobhistory.getEnd_date());
+//            System.out.println(jobhistory.getJob_id());
+//            System.out.println(jobhistory.getDepartment_id());
+//            
+//        }
         
+    //Test DAO Delete Job History
+//        IJobHistoryDAO jobHistory = new JobHistoryDAO(connection.getConnection());
+//        jobHistory.delete(100);
+//    }
+//Test DAO getByID Job History
+//        IJobHistoryDAO ijob = new JobHistoryDAO(connection.getConnection());
+//        for (JobHistory jobhistory : ijob.getById(122)) {
+//            System.out.println(jobhistory.getEmployee_id());
+//            System.out.println(jobhistory.getStart_date());
+//            System.out.println(jobhistory.getEnd_date());
+//            System.out.println(jobhistory.getJob_id());
+//            System.out.println(jobhistory.getDepartment_id());
+//            
+//        }
+
+//Test Controller insert Job History
+//        IJobHistoryController ijc = new JobHistoryController(connection.getConnection());
+//        ijc.insert(id, name);
+
+//Test Controller delete Job History
+//        IJobHistoryController ijc = new JobHistoryController(connection.getConnection());
+//        ijc.delete("133");
+    }   
     }
 
-}
+
