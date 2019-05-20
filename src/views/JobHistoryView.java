@@ -214,6 +214,11 @@ public class JobHistoryView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblJob.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblJobMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblJob);
         if (tblJob.getColumnModel().getColumnCount() > 0) {
             tblJob.getColumnModel().getColumn(0).setHeaderValue("Employee ID");
@@ -379,6 +384,18 @@ public class JobHistoryView extends javax.swing.JFrame {
     private void jCariFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCariFKeyTyped
         UpdateTabel(jCariF.getText());
     }//GEN-LAST:event_jCariFKeyTyped
+
+    private void tblJobMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblJobMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
+        int SelectRowIndex = tblJob.getSelectedRow();
+        
+        jInsert.setEnabled(false);
+        jEmployee.setText(model.getValueAt(SelectRowIndex, 0).toString());
+        jStart.setDateFormatString(model.getValueAt(SelectRowIndex, 1).toString());
+        jEnd.setDateFormatString(model.getValueAt(SelectRowIndex, 2).toString());
+        jJob.setText(model.getValueAt(SelectRowIndex, 3).toString());
+        jDepartment.setText(model.getValueAt(SelectRowIndex, 4).toString());
+    }//GEN-LAST:event_tblJobMouseClicked
 
     /**
      * @param args the command line arguments
