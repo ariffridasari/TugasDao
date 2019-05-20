@@ -77,10 +77,11 @@ public class JobHistoryDAO implements IJobHistoryDAO {
     @Override
     public List<JobHistory> search(String key) {
         List<JobHistory> listJobhistory = new ArrayList<JobHistory>();
-        String query = "SELECT * FROM JOB_HISTORY WHERE department_id like (?)";
+        String query = "SELECT * FROM JOB_HISTORY WHERE department_id like (?) OR job_id like (?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%"+key+"%");
+            preparedStatement.setString(2, "%"+key+"%");            
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 JobHistory r = new JobHistory();
