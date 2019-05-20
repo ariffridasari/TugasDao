@@ -5,89 +5,89 @@
  */
 package daos;
 
-import idaos.IRegionDAO;
+import idaos.ICountryDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import models.Region;
+import models.Country;
 
 /**
  *
  * @author Arif Fridasari
  */
-public class RegionDAO implements IRegionDAO {
+public class CountryDAO implements ICountryDAO {
 
     private Connection connection;
 
-    public RegionDAO(Connection connection) {
+    public CountryDAO(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public List<Region> getAll() {
-        List<Region> listRegion = new ArrayList<Region>();
-        String query = "SELECT * FROM REGIONS ORDER BY region_id";
+    public List<Country> getAll() {
+        List<Country> listCountry = new ArrayList<Country>();
+        String query = "SELECT * FROM COUNTRIES ORDER BY country_id";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
-                r.setId(resultSet.getInt(1));
-                r.setName(resultSet.getString(2));
-                listRegion.add(r);
+                Country c = new Country(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3));
+                listCountry.add(c);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
-        return listRegion;
+        return listCountry;
     }
 
     @Override
-    public List<Region> getById(int id) {
-        List<Region> listRegion = new ArrayList<Region>(id);
-        String query = "SELECT * FROM REGIONS WHERE region_id = ? ";
+    public List<Country> getById(String c_id) {
+        List<Country> listCountry = new ArrayList<Country>();
+        String query = "SELECT * FROM COUNTRIES WHERE country_id=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, c_id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
-                listRegion.add(r);
+                Country c = new Country(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3));
+                listCountry.add(c);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
-        return listRegion;}
+        return listCountry;
+    }
 
     @Override
-    public List<Region> search(String key) {
-        List<Region> listRegion = new ArrayList<Region>();
-        String query = "SELECT * FROM REGIONS WHERE region_name like (?) OR region_id like (?) ";
+    public List<Country> search(String key) {
+        List<Country> listCountry = new ArrayList<Country>();
+        String query = "SELECT * FROM COUNTRIES WHERE REGEXP_LIKE (country_name) like (?) OR REGEXP_LIKE(country_id) like (?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, "%" + key + "%");
             preparedStatement.setString(2, "%" + key + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
-                listRegion.add(r);
+                Country c = new Country(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3));
+                listCountry.add(c);
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
-        return listRegion;
+        return listCountry;
     }
 
     @Override
-    public boolean insert(Region r) {
+    public boolean insert(Country c) {
         boolean result = false;
-        String query = "INSERT INTO REGIONS (region_id, region_name) VALUES (?,?)";
+        String query = "INSERT INTO COUNTRIES (country_id, country_name, region_id) VALUES (?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, r.getId());
-            preparedStatement.setString(2, r.getName());
+            preparedStatement.setString(1, c.getC_id());
+            preparedStatement.setString(2, c.getName());
+            preparedStatement.setInt(3, c.getR_id());
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {
@@ -97,13 +97,14 @@ public class RegionDAO implements IRegionDAO {
     }
 
     @Override
-    public boolean update(Region r) {
+    public boolean update(Country c) {
         boolean result = false;
-        String query = "UPDATE REGIONS SET region_name=? WHERE region_id=?";
+        String query = "UPDATE COUNTRIES SET country_name = ?,region_id=? WHERE country_id=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, r.getName());
-            preparedStatement.setInt(2, r.getId());
+            preparedStatement.setString(1, c.getName());
+            preparedStatement.setInt(2, c.getR_id());
+            preparedStatement.setString(3, c.getC_id());
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {
@@ -113,17 +114,17 @@ public class RegionDAO implements IRegionDAO {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(String c_id) {
         boolean result = false;
-        String query = "DELETE FROM REGIONS WHERE region_id = ?";
+        String query = "DELETE FROM COUNTRIES WHERE country_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, c_id);
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return result;
     }
-
 }

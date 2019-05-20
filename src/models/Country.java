@@ -9,28 +9,35 @@ package models;
  *
  * @author Arif Fridasari
  */
-public class Region {
-    private int id;
+public class Country {
+    private String c_id;
     private String name;
+    private int r_id;
 
-    public Region() {
+
+    public Country() {
     }
 
-    public Region(String name) {
+    public Country(String c_id, String name, int r_id) {
+        this.c_id = c_id;
         this.name = name;
+        this.r_id = r_id;
     }
 
-    public Region(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public String getC_id() {
+        return c_id;
     }
 
-    public int getId() {
-        return id;
+    public void setC_id(String c_id) {
+        this.c_id = c_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getR_id() {
+        return r_id;
+    }
+
+    public void setR_id(int r_id) {
+        this.r_id = r_id;
     }
 
     public String getName() {
@@ -40,7 +47,6 @@ public class Region {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
     
 }
