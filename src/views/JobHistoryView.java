@@ -82,6 +82,11 @@ public class JobHistoryView extends javax.swing.JFrame {
             model.addRow(row);
         } 
 }
+        public void UpdateTabel() {
+        DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
+        model.setRowCount(0);
+        getData();
+    }
         public void UpdateTabel(String key){
             DefaultTableModel model = (DefaultTableModel) tblJob.getModel();
     model.setRowCount(0);
@@ -89,6 +94,14 @@ public class JobHistoryView extends javax.swing.JFrame {
             getData();
         }
         getData(key);
+    }
+                public void resetText() {
+        jEmployee.setText("");
+        jStart.setDate(null);
+        jEnd.setDate(null);
+        jJob.setText("");
+        jDepartment.setText("");
+        jInsert.setEnabled(true);
     }
 
     /**
@@ -236,6 +249,11 @@ public class JobHistoryView extends javax.swing.JFrame {
         });
 
         jDelete.setText("Delete");
+        jDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteActionPerformed(evt);
+            }
+        });
 
         jUpdate.setText("Update");
 
@@ -331,24 +349,7 @@ public class JobHistoryView extends javax.swing.JFrame {
     }//GEN-LAST:event_jEmployeeActionPerformed
 
     private void jCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCariActionPerformed
-//        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblJob.getModel();        
-        String key = jCariF.getText();
-        try {
-        List<JobHistory> jobHistory = new ArrayList<>();
-        jobHistory = ijc.search(key);            
-        Object[] row = new Object[5];
-        for (int i = 0; i < jobHistory.size(); i++) {
-            row[0] = jobHistory.get(i).getEmployee_id();
-            row[1] = jobHistory.get(i).getStart_date();
-            row[2] = jobHistory.get(i).getEnd_date();
-            row[3] = jobHistory.get(i).getJob_id();
-            row[4] = jobHistory.get(i).getDepartment_id();
-        }
-        tblJob.setModel(model);
-        } catch (Exception e) {
-        JOptionPane.showMessageDialog(rootPane, "Data yang dicari tidak ada !!!!");
-        } 
+//        // TODO add your handling code here: 
 
     }//GEN-LAST:event_jCariActionPerformed
 
@@ -396,6 +397,15 @@ public class JobHistoryView extends javax.swing.JFrame {
         jJob.setText(model.getValueAt(SelectRowIndex, 3).toString());
         jDepartment.setText(model.getValueAt(SelectRowIndex, 4).toString());
     }//GEN-LAST:event_tblJobMouseClicked
+
+    private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(this, "Kamu yakin mau menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, ijc.delete(Integer.parseInt(jEmployee.getText())));
+            UpdateTabel();
+            resetText();
+        }
+    }//GEN-LAST:event_jDeleteActionPerformed
 
     /**
      * @param args the command line arguments
