@@ -3,6 +3,7 @@ package tools;
 import daos.CountryDAO;
 import daos.RegionDAO;
 import daos.DepartmentDAO;
+import daos.EmployeeDAO;
 import idaos.ICountryDAO;
 import idaos.IDepartmentDAO;
 import idaos.IRegionDAO;
@@ -10,6 +11,7 @@ import models.Country;
 import tools.DBConnection;
 import models.Region;
 import models.Department;
+import models.Employee;
 
 /**
  *
@@ -110,11 +112,11 @@ public class OJDBC {
          * SEARCH REGIONS
          */
 
-        RegionDAO irdao = new RegionDAO(connection.getConnection());
-        for (Region region : irdao.getData(1, true)) {
-            System.out.println(region.getId());
-            System.out.println(region.getName());
-        }
+//        RegionDAO irdao = new RegionDAO(connection.getConnection());
+//        for (Region region : irdao.getData(1, true)) {
+//            System.out.println(region.getId());
+//            System.out.println(region.getName());
+//        }
         
         /**
          * getData("", false) -->  GET ALL
@@ -266,7 +268,14 @@ public class OJDBC {
 //Test Controller delete Job History
 //        IJobHistoryController ijc = new JobHistoryController(connection.getConnection());
 //        ijc.delete("133");
+
+//Test Employee
+        EmployeeDAO edao = new EmployeeDAO(connection.getConnection());
+        for (Employee employee : edao.getData("", false)) {
+            System.out.println(employee.getId());
+            System.out.println(employee.getFirstName());
+        }
     }   
-    }
+ }
 
 
