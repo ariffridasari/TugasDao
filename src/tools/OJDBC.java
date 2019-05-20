@@ -76,11 +76,11 @@ public class OJDBC {
         /**
          * SEARCH REGIONS
          */
-//        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//        for (Region region : irdao.search("Su")) {
-//            System.out.println(region.getId());
-//            System.out.println(region.getName());
-//        }
+        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+        for (Region region : irdao.search("as")) {
+            System.out.println(region.getId());
+            System.out.println(region.getName());
+        }
         /**
          * TABEL COUNTRIES
          */
@@ -113,12 +113,12 @@ public class OJDBC {
         /**
          * SEARCH COUNTRY
          */
-        ICountryDAO icdao = new CountryDAO(connection.getConnection());
-        for (Country country : icdao.search("ar")) {
-            System.out.println(country.getC_id());
-            System.out.println(country.getName());
-            System.out.println(country.getR_id());
-        }
+//        ICountryDAO icdao = new CountryDAO(connection.getConnection());
+//        for (Country country : icdao.search("ar")) {
+//            System.out.println(country.getC_id());
+//            System.out.println(country.getName());
+//            System.out.println(country.getR_id());
+//        }
         /**
          * INSERT COUNTRY
          */

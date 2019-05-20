@@ -64,11 +64,11 @@ public class RegionDAO implements IRegionDAO {
     @Override
     public List<Region> search(String key) {
         List<Region> listRegion = new ArrayList<Region>();
-        String query = "SELECT * FROM REGIONS WHERE region_name like (?) OR region_id like (?) ";
+        String query = "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "%" + key + "%");
-            preparedStatement.setString(2, "%" + key + "%");
+            preparedStatement.setString(1,key);
+            preparedStatement.setString(2,key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
