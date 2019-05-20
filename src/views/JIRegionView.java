@@ -36,6 +36,8 @@ public class JIRegionView extends javax.swing.JInternalFrame {
     public void resetTextRegion() {
         txtRegion_Id.setText("");
         txtRegion_Name.setText("");
+        txtRegion_Id.setEditable(true);
+        btnInsertRegion.setEnabled(true);
     }
 
     public void showTableRegion() {
@@ -54,7 +56,7 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tableRegion.getModel();
         Object[] row = new Object[2];
         List<Region> region = new ArrayList<>();
-        region = irc.getAll();
+        region = irc.search(s);
         for (int i = 0; i < region.size(); i++) {
             row[0] = region.get(i).getId();
             row[1] = region.get(i).getName();
@@ -74,7 +76,7 @@ public class JIRegionView extends javax.swing.JInternalFrame {
         if (s == "") {
             showTableRegion();
         }
-        showTableRegion();
+        showTableRegion(s);
     }
 
     /**

@@ -55,12 +55,12 @@ public class OJDBC {
 //        //Search
 //        System.out.println(iddao.search("ai"));
 
-        for (Department d : iddao.search("7")) {
-            System.out.println(d.getId());
-            System.out.println(d.getName());
-            System.out.println(d.getManager_id());
-            System.out.println(d.getLocation_id());
-        }
+//        for (Department d : iddao.search("7")) {
+//            System.out.println(d.getId());
+//            System.out.println(d.getName());
+//            System.out.println(d.getManager_id());
+//            System.out.println(d.getLocation_id());
+//        }
         
         
          /**
@@ -109,11 +109,11 @@ public class OJDBC {
         /**
          * SEARCH REGIONS
          */
-//        IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//        for (Region region : irdao.search("Su")) {
-//            System.out.println(region.getId());
-//            System.out.println(region.getName());
-//        }
+        IRegionDAO irdao = new RegionDAO(connection.getConnection());
+        for (Region region : irdao.search("su")) {
+            System.out.println(region.getId());
+            System.out.println(region.getName());
+        }
         /**
          * TABEL COUNTRIES
          */
@@ -146,12 +146,12 @@ public class OJDBC {
         /**
          * SEARCH COUNTRY
          */
-        ICountryDAO icdao = new CountryDAO(connection.getConnection());
-        for (Country country : icdao.search("ar")) {
-            System.out.println(country.getC_id());
-            System.out.println(country.getName());
-            System.out.println(country.getR_id());
-        }
+//        ICountryDAO icdao = new CountryDAO(connection.getConnection());
+//        for (Country country : icdao.search("Ar")) {
+//            System.out.println(country.getC_id());
+//            System.out.println(country.getName());
+//            System.out.println(country.getR_id());
+//        }
         /**
          * INSERT COUNTRY
          */
