@@ -17,24 +17,24 @@ public class LocationController implements ILocationController {
 
     @Override
     public List<Location> getAll() {
-        return ildao.getAll();
+        return ildao.getData("", false);
     }
 
     @Override
     public List<Location> getById(String id) {
-        return ildao.getById(Integer.parseInt(id));
+        return ildao.getData(Integer.parseInt(id),true);
     }
 
     @Override
     public List<Location> search(String key) {
-        return ildao.search(key);
+        return ildao.getData(key, false);
     }
 
     @Override
     public String insert(String id, String street_address, String postal_code, String city, String state_province, String country_id) {
         String result = "";
         Location location = new Location(Integer.parseInt(id), street_address, postal_code, city, state_province, country_id);
-        if (ildao.insert(location)) {
+        if (ildao.save(location,true)) {
             result = "Data berhasil disimpan";
         } else {
             result = "Maaf data gagal disimpan";
@@ -46,7 +46,7 @@ public class LocationController implements ILocationController {
     public String update(String id, String street_address, String postal_code, String city, String state_province, String country_id) {
         String result = "";
         Location location = new Location(Integer.parseInt(id), street_address, postal_code, city, state_province, country_id);
-        if (ildao.update(location)) {
+        if (ildao.save(location,false)) {
             result = "Data berhasil diupdate";
         } else {
             result = "Maaf data gagal diupdate";

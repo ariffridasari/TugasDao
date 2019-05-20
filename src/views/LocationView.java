@@ -194,6 +194,9 @@ public class LocationView extends javax.swing.JFrame {
         });
 
         txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtsearchKeyTyped(evt);
             }
@@ -388,9 +391,12 @@ public class LocationView extends javax.swing.JFrame {
     }//GEN-LAST:event_tablelocationMouseClicked
 
     private void txtsearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyTyped
-        // TODO add your handling code here:
-        updateTableLocations(txtsearch.getText());
+    
     }//GEN-LAST:event_txtsearchKeyTyped
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        updateTableLocations(txtsearch.getText());
+    }//GEN-LAST:event_txtsearchKeyReleased
 
     /**
      * @param args the command line arguments
