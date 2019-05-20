@@ -26,36 +26,37 @@ public class CountryController implements ICountryController {
 
     @Override
     public List<Country> getAll() {
-        return icdao.getData("", false);
+        return icdao.getAll();
     }
 
     @Override
     public List<Country> getById(String c_id) {
-        return icdao.getData(Integer.parseInt(c_id), true);
+        return icdao.getById(c_id);
     }
 
     @Override
     public List<Country> search(String key) {
-        return icdao.getData(key, false);
+        return icdao.search(key);
     }
 
     @Override
     public String insert(String c_id, String name, String r_id) {
         String result = "";
         Country country = new Country(c_id, name, Integer.parseInt(r_id));
-        if (icdao.save(country, true)) {
+        if (icdao.insert(country)) {
             result = "Data berhasil disimpan";
         } else {
             result = "Maaf data gagal disimpan";
         }
         return result;
+
     }
 
     @Override
     public String update(String c_id, String name, String r_id) {
         String result = "";
         Country country = new Country(c_id, name, Integer.parseInt(r_id));
-        if (icdao.save(country, true)) {
+        if (icdao.update(country)) {
             result = "Data berhasil diperbarui";
         } else {
             result = "Maaf data gagal diperbarui";
